@@ -40,6 +40,7 @@ graph TB
 
 - utils：提供其他依赖的功能
 
+- libs：非api，存储一些依赖数据
 
 ## cmd 
 
