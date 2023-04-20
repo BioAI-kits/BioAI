@@ -1,0 +1,14 @@
+Metadata-Version: 2.1
+Name: bioai
+Version: 0.0.0.1
+Summary: A Deep Learning Framwork for Bioinformatics.
+Home-page: https://github.com/BioAI-kits/BioAI
+Author: Billy
+Author-email: liangbilin0324@163.com
+License: Apache License 2.0
+Platform: UNKNOWN
+Requires-Python: >=3.9.*
+License-File: LICENSE
+
+UNKNOWN
+
