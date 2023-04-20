@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img height="150" src="./img/BioAI.png" />
+  <img height="250" src="./img/BioAI.png" />
 </p>
 
 
