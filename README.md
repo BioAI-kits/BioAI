@@ -5,7 +5,7 @@
 
 ---
 
-[简体中文]('https://github.com/BioAI-kits/BioAI/blob/master/bioai/design.md')
+[简体中文](https://github.com/BioAI-kits/BioAI/blob/master/bioai/design.md)
 
 
 
