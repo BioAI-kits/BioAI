@@ -42,6 +42,15 @@ graph TB
 
 - libs：非api，存储一些依赖数据
 
+
+## 如何定义输入数据格式
+
+- 计算数据：如转录组、突变组
+
+- 依赖数据：如Pathway
+
+
+
 ## cmd 
 
 - main command ： bioai
@@ -53,3 +62,10 @@ graph TB
 
 任务上分为 `分类` 和 `回归` 算法。
 
+## PyPi
+
+```
+python setup.py sdist bdist_egg
+
+twine upload dist/*
+```
