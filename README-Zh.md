@@ -5,7 +5,7 @@
 
 ---
 
-[English Document](https://github.com/BioAI-kits/BioAI/blob/master/bioai/design.md)
+[English Document](https://github.com/BioAI-kits/BioAI/blob/master/README.md)
 
 
 
