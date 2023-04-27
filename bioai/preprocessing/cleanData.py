@@ -12,6 +12,9 @@ class Pipeline:
         # perform merge datas
         self.merge() 
 
+        # imputation
+        self.imputation()
+        
         # perform norm
         self.normlization()
         
@@ -35,21 +38,19 @@ class Pipeline:
                                  right_index=True
                                  )
         self.Data = data_left.iloc[:, :-1]
-        self.Label = data_left.iloc[:, -1].values
+        self.Label = data_left.iloc[:, [-1]]
 
         info = f"{getTime()} >>> The number of samples retained is: {self.Label.shape[0]} ."
         print(info)
+    
     
     def inverse_merge(self):
         pass 
     
     
-    
-    
-    
     # 填充缺失值
     def imputation(self):
-        pass 
+        self.Data = self.Data.fillna(0)
     
     
     # 移除缺失值太多的特征
