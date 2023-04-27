@@ -3,20 +3,21 @@ import pandas as pd
 from bioai.utils.getTime import getTime
 
 class Pipeline:
-    def __init__(self, datas:list, label:pd.DataFrame) -> None:
+    def __init__(self, datas:list, label:pd.DataFrame, groupName=None) -> None:
         self.datas = datas
         self.label = label
+        self.group = groupName
         
     def run(self):
         # perform merge datas
-        self.mergeData() 
+        self.merge() 
 
         # perform norm
         self.normlization()
         
         return self.DataNorm, self.Label
     
-    def mergeData(self):
+    def merge(self):
         """ 
         merge data and label accordding sample id.
         """
@@ -38,6 +39,13 @@ class Pipeline:
 
         info = f"{getTime()} >>> The number of samples retained is: {self.Label.shape[0]} ."
         print(info)
+    
+    def inverse_merge(self):
+        pass 
+    
+    
+    
+    
     
     # 填充缺失值
     def imputation(self):

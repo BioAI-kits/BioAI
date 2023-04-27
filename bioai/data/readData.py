@@ -3,17 +3,22 @@ import pandas as pd
 
 
 class ReadData:
-    def __init__(self, dataFiles: list, labelFile: str):
+    def __init__(self, dataFiles: list, labelFile: str, groupName=None):
         """ 
         dataFiles: input files: .csv, .csv.gz. || example: ['./example/cnv.csv.gz']
         labelFile: label files: .csv, .csv.gz  || example: './example/label.csv'
         """
         self.dataFiles = dataFiles
         self.labelFile = labelFile
+        self.group = groupName
         
         # check file
         self.check_files(self.dataFiles)
         self.check_files(self.labelFile)
+        
+        # check group
+        if self.group != None:
+            assert len(self.dataFiles) == len(groupName), f"[Error]: data file number is {len(dataFiles)}, groupName length is {len(groupName)}, which should be same."
         
     def run(self):
         """ 
@@ -28,10 +33,12 @@ class ReadData:
     def readData(self):
         if isinstance(self.dataFiles, list):
             datas = []
-            for f in self.dataFiles:
-                datas.append(self.read_csv(file=f))
+            for idx,f in enumerate(self.dataFiles):
+                df = self.read_csv(file=f)
+                if self.group != None:
+                    df.columns = [self.group[idx]+ '@' + nn for nn in df.columns.values]
+                datas.append(df)
             return datas 
-        # TODO: 只要一个组学数据呢
                 
     def readLabel(self):
         return self.read_csv(self.labelFile)
