@@ -11,7 +11,11 @@ class Select:
                  method='chi'
                  ) -> None:
         """ 
-        data: 
+        data: {array-like, sparse matrix} of shape (n_samples, n_features)  Sample vectors.
+        label: array-like of shape (n_samples,)  Target vector (class labels).
+        featNum: Number of top features to select.
+        featName: Names of features
+        method: selected method
         """
         self.data = data
         self.label = label
@@ -33,26 +37,35 @@ class Select:
     
     def chi(self):
         selector = FS.SelectKBest(FS.chi2, k=self.featNum).fit(self.data, self.label)
-        # transformer data
         selected_data = selector.transform(self.data)
         selected_feat = self.featName[selector.get_support()]
         return selected_data, selected_feat
     
     def anova(self):
-        pass 
+        selector = FS.SelectKBest(FS.f_classif, k=self.featNum).fit(self.data, self.label)
+        selected_data = selector.transform(self.data)
+        selected_feat = self.featName[selector.get_support()]
+        return selected_data, selected_feat
     
     def lasso(self):
+        # TODO: 
         pass 
     
-    def ref(self):
+    def rfe(self):
+        # TODO: 
         pass 
-    
-    def pca(self):
-        pass 
-    
+        
     def run(self):
         if self.method == 'chi':
             selected_data, selected_feat= self.chi()
+        elif self.method == 'anova':
+            selected_data, selected_feat= self.anova()
+        elif self.method == 'lasso':
+            selected_data, selected_feat= self.lasso()
+        elif self.method == 'rfe':
+            selected_data, selected_feat= self.rfe()
+        else:
+            print('Error: ')
         
             
         
@@ -69,8 +82,8 @@ if __name__ == '__main__':
     dat, feat = Select(data=data, 
                        label=labels, 
                        featName=featNames, 
-                       featNum=0.5,
-                       method='chi'
+                       featNum=3,
+                       method='anova'
                        ).run()
 
     print(dat.shape, feat)
