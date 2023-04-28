@@ -48,10 +48,12 @@ setup(
     # 包含的数据
     # data_files=['AttentionMOI/example/cnv.csv.gz', 'AttentionMOI/example/met.csv.gz', 'AttentionMOI/example/rna.csv.gz', 'AttentionMOI/example/label.csv'],
     # 命令行
-    # entry_points={
-    #     'console_scripts': ['moi = AttentionMOI.moi:run_main',
-    #                         ],
-    # },
+    entry_points={
+        'console_scripts': ['bioai-moi = bioai.main:moi',  # multi omics integration
+                            'bioai-somic = bioai.main:somic', # sigle omic model
+                            
+                            ],
+    },
 )
 
 

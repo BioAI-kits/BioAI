@@ -53,9 +53,17 @@ graph TB
 
 ## cmd 
 
-- main command ： bioai
-
-- sub cmd: 
+- main command 
+1. bioai-moi 
+    - rf
+    - svm
+    - xgboost
+    - lr
+2. bioai-somic
+    - rf
+    - svm
+    - xgboost
+    - lr
 
 
 ## algorithms
