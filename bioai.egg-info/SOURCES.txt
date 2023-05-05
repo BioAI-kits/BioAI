@@ -9,6 +9,7 @@ bioai.egg-info/dependency_links.txt
 bioai.egg-info/entry_points.txt
 bioai.egg-info/top_level.txt
 bioai/algorithms/__init__.py
+bioai/algorithms/base.py
 bioai/check/__init__.py
 bioai/check/checkData.py
 bioai/check/checkParamter.py
