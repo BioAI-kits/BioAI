@@ -11,8 +11,6 @@
 
 
 
-
-
 ## What can BioAI do for you ?
 
 
@@ -40,11 +38,14 @@
 
 ### Machine/Deep learning algorithms
 
-| Algorithm | Paper | 
-| --- | ---|
-| Random Forest | ?? |
-| XGBoost | ?? |
-
+| Algorithm | Scope | Task |Paper | 
+| --- | --- | -- | --- | 
+| Random Forest | single/multi omics | classification/regression | ?? |
+| XGBoost | single/multi omics | classification/regression | ?? |
+| SVM | single/multi omics | classification/regression | ?? |
+| LASSO | single/multi omics | classification/regression | ?? |
+| PathGNN | Transcription | classification | Liang B, Gong H, Lu L, et al. Risk stratification and pathway analysis based on graph neural network and interpretable algorithm[J]. BMC bioinformatics, 2022, 23(1): 394. |
+| AttentionMOI | multi omics | classification | ?? |
 
 
 
