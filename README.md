@@ -1,16 +1,49 @@
 
-<p align="center">
+<!-- <p align="center">
   <img height="250" src="./img/log2.png" />
-</p>
+</p> -->
 
 ---
 
-## <font face="黑体" color=green size=5>What is BioAI ？</font>
+## What is BioAI ？
+
+**BioAI** is a library built upon scikit-learn and PyTorch to easily write and train machine learning or deep learning models for biological omics data.  
 
 
 
 
 
+## What can BioAI do for you ?
+
+
+
+
+## What is the scope of BioAI ?
+
+
+
+
+## How does BioAI work ?
+
+
+
+
+## How to get started ?
+
+
+
+## What algorithms are currently supported?
+
+### Data preprocessing
+
+
+
+### Machine/Deep learning algorithms
+
+| Algorithm | Paper | 
+| --- | ---|
+| Random Forest | ?? |
+| XGBoost | ?? |
 
 
 
