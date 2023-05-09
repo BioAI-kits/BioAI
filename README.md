@@ -7,12 +7,17 @@
 
 ## What is BioAI ？
 
-**BioAI** is a library built upon scikit-learn and PyTorch to easily write and train machine learning or deep learning models for biological omics data.  
+**BioAI** is a library built upon scikit-learn and PyTorch to easily write and train machine learning or deep learning models for biological omics data and scale data.  Currently, data preprocessing and AI algorithms have been integrated. You can train your own algorithm model directly through the command line. 
 
 ---
 
 ## What can BioAI do for you ?
 
+If you are a domain scientist (biologist, medical researcher, ...) looking to analyze your own omics or scale data, BioAI provides an out-of-the-box solution that is all but guaranteed to provide excellent results on your individual dataset. Simply convert your dataset into the BioAI format and enjoy the power of AI - no expertise required!
+
+If you are an AI or bioinformatics researcher developing AI algorithms suitable for bioinformatics or clinical practice, BioAI offers the fantastic out-of-the-box applicable baseline algorithms to compete against
+
+Model interpretability is a great concern in the biomedical field, so we have also included AI interpretability algorithms in the new version.
 
 ---
 
@@ -51,13 +56,11 @@ All data should be saved in `.csv` format, of course you can use `gz` for compre
 
 ## What algorithms are currently supported?
 
-
----
+BioAI mainly integrates three types of algorithms: data preprocessing, AI algorithms and interpretability algorithms.
 
 ### Data preprocessing
 
 
----
 
 ### Machine/Deep learning algorithms
 
@@ -71,22 +74,6 @@ All data should be saved in `.csv` format, of course you can use `gz` for compre
 | AttentionMOI | multi omics | classification | ?? |
 
 
-
-
-
-
-
-TODO: Introduction 
-
-**BioAI** is a library built upon scikit-learn and PyTorch to easily write and train machine learning or deep learning models for biological omics data.  
-
-It consists of various methods from a variety of published papers. 
-
-
-[简体中文](https://github.com/BioAI-kits/BioAI/blob/master/README-Zh.md)
-
-
-
---- 
+### Interpretability algorithm
 
 

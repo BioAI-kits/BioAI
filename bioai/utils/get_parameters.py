@@ -32,7 +32,7 @@ class GetArgs:
         # program params
         group_program = self.parser.add_argument_group("Program paramters")
         group_program.add_argument("-h", action="help", help="show this help message and exit.")
-        group_program.add_argument("-v", help="show the program version.", metavar='')       
+        group_program.add_argument("-v", help="show the program version.", metavar='') 
             
     def register(self):
         # Random Forest Params
