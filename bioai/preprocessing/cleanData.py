@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd 
 from bioai.utils.getTime import getTime
 
+
 class Pipeline:
     def __init__(self, datas:list, label:pd.DataFrame, groupName=None) -> None:
         self.datas = datas
@@ -40,7 +41,7 @@ class Pipeline:
         self.Data = data_left.iloc[:, :-1]
         self.Label = data_left.iloc[:, [-1]]
 
-        info = f"{getTime()} >>> The number of samples retained is: {self.Label.shape[0]} ."
+        info = f"{getTime()} >>> The number of samples retained is: {self.Label.shape[0]} \n"
         print(info)
     
     

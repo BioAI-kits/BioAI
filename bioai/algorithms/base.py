@@ -2,6 +2,7 @@ import os, pickle
 import numpy as np
 import pandas as pd 
 import mlcakes
+from bioai.utils.getTime import getTime
 from sklearn.ensemble import RandomForestClassifier
 from xgboost.sklearn import XGBClassifier
 
@@ -52,6 +53,8 @@ class RandomForest:
         """ 
         train and save model.
         """
+        info = f"{getTime()} >>> Building model...\n"
+        print(info)
         model = RandomForestClassifier(n_estimators=self.n_estimators, 
                                        max_depth=self.max_depth, 
                                        random_state=self.random_state,
@@ -66,6 +69,8 @@ class RandomForest:
         After performing, the metrics_ attribute holds the model evaluation metrics.
         evaluation.json will be written on output directory.
         """
+        info = f"{getTime()} >>> Evaluating model...\n"
+        print(info)
         if self.task == 'multi_cls':
             from mlcakes.evaluation.multi_class import Metrics
         else:
@@ -94,6 +99,8 @@ class RandomForest:
             y_pred: predicted label
             y_score: predicted prob.
         """
+        info = f"{getTime()} >>> Predicting using model...\n"
+        print(info)
         with open(os.path.join(path, 'model.pkl'), 'rb') as FO:
             model = pickle.load(FO)
         y_pred = model.predict(data)
@@ -146,6 +153,8 @@ class XGBoost:
         """ 
         train and save model.
         """
+        info = f"{getTime()} >>> Building model...\n"
+        print(info)
         model = XGBClassifier(n_estimators=self.n_estimators, 
                               max_depth=self.max_depth, 
                               random_state=self.random_state,
@@ -161,6 +170,8 @@ class XGBoost:
         After performing, the metrics_ attribute holds the model evaluation metrics.
         evaluation.json will be written on output directory.
         """
+        info = f"{getTime()} >>> Evaluating model...\n"
+        print(info)
         if self.task == 'multi_cls':
             from mlcakes.evaluation.multi_class import Metrics
         else:
@@ -189,6 +200,8 @@ class XGBoost:
             y_pred: predicted label
             y_score: predicted prob.
         """
+        info = f"{getTime()} >>> Predicting using model...\n"
+        print(info)
         with open(os.path.join(path, 'model.pkl'), 'rb') as FO:
             model = pickle.load(FO)
         y_pred = model.predict(data)

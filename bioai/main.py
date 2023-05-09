@@ -12,21 +12,14 @@ def moi():
     groupNames = args.g 
     labelFile = args.l 
     output = args.o
+    task = args.t
     
-    
-    
+    print(args)
     # read data
-    # datas, label = ReadData(dataFiles=['./example/cnv.csv.gz',
-    #                                     './example/met.csv.gz',
-    #                                     './example/rna.csv.gz'
-    #                                     ], 
-    #                     labelFile='./example/label.csv',
-    #                     groupName=['cnv', 'met', 'rna']
-    #                     ).run()
     datas, label = ReadData(dataFiles=dataFiles, 
-                        labelFile=labelFile,
-                        groupName=groupNames
-                        ).run()
+                            labelFile=labelFile,
+                            groupName=groupNames
+                            ).run()
 
     # preprocessing
     Data, Label = Pipeline(datas=datas, label=label).run()
@@ -36,13 +29,15 @@ def moi():
 
     # build model
     RF = Model(X_train, X_test, Y_train.label.values, Y_test.label.values,
-                output=output,
+                output=output, task=task
                 )
     RF.buildModel()
 
     # evaluation
     RF.evaluation()
 
+    # finished
+    
 
 def somic():
     # read data
