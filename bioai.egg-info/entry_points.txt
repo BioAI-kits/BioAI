@@ -1,3 +1,0 @@
-[console_scripts]
-bioai-moi = bioai.main:moi
-bioai-somic = bioai.main:somic
