@@ -1,7 +1,7 @@
-from bioai.utils.get_parameters import GetArgs
+from bioai.utils.getParams import GetArgs
 from bioai.data.readData import ReadData
-from bioai.preprocessing.cleanData import Pipeline
-from bioai.preprocessing.splitData import percent_split
+from bioai.preprocessing.dataPreprocessing.cleanData import Pipeline
+from bioai.preprocessing.dataPreprocessing.splitData import percent_split
 from bioai.algorithms.multi_omics.classification.RandomForest import Model
 
 

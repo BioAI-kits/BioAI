@@ -75,7 +75,7 @@ After BioAI is installed, your terminal will contain the following commands:
 2. `bioai-moi`: This command is used to build a multi-omics integrated AI model based on multiple omics data.
 
 
-- **An example**
+- **Several examples**
 
 TODO
 
