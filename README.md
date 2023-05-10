@@ -45,6 +45,15 @@ All data should be saved in `.csv` format, of course you can use `gz` for compre
 
 ## How does BioAI work ?
 
+Given a new dataset, BioAI will systematically analyze the provided training cases and create a configurations for each dataset.
+
+In the BioAI framework, the process includes two parts: data preprocessing and model building.  
+
+The data preprocessing adopts common feature engineering steps. After data preprocessing, the data is split into training and testing sets. The training set is used to build the model. Specifically, it includes hyperparameter grid search, model training, and model saving. The test set is used to evaluate the model. Finally, BioAI will calculate the feature importance through the explainability algorithm, so that users can have a deeper understanding of their own models.
+
+<p align="center">
+  <img height="200" src="./img/img1.png" />
+</p>
 
 ---
 
