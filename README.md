@@ -52,7 +52,7 @@ In the BioAI framework, the process includes two parts: data preprocessing and m
 The data preprocessing adopts common feature engineering steps. After data preprocessing, the data is split into training and testing sets. The training set is used to build the model. Specifically, it includes hyperparameter grid search, model training, and model saving. The test set is used to evaluate the model. Finally, BioAI will calculate the feature importance through the explainability algorithm, so that users can have a deeper understanding of their own models.
 
 <p align="center">
-  <img height="200" src="./img/img1.png" />
+  <img height="250" src="./img/img1.png" />
 </p>
 
 ---
