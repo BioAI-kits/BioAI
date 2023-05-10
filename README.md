@@ -59,6 +59,17 @@ The data preprocessing adopts common feature engineering steps. After data prepr
 
 ## How to get started ?
 
+- **Installation instructions**
+
+We assume that you have installed python version 3.7 or higher. We recommend that you use pypi to install, as follows:
+
+```py
+pip install bioai
+```
+
+- **An example**
+
+
 
 
 ---
