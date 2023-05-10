@@ -67,9 +67,17 @@ We assume that you have installed python version 3.7 or higher. We recommend tha
 pip install bioai
 ```
 
+- **Command instructions**
+
+After BioAI is installed, your terminal will contain the following commands:
+
+1. `bioai`: This command is used to build an AI model based on a table, such as transcriptome data or clinical table data.
+2. `bioai-moi`: This command is used to build a multi-omics integrated AI model based on multiple omics data.
+
+
 - **An example**
 
-
+TODO
 
 
 ---
