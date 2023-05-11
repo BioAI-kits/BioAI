@@ -3,7 +3,7 @@ import pandas as pd
 from bioai.utils.getTime import getTime
 
 
-class Pipeline:
+class CleanPipeline:
     def __init__(self, datas:list, label:pd.DataFrame, groupName=None) -> None:
         self.datas = datas
         self.label = label

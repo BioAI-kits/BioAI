@@ -1,14 +1,11 @@
 import argparse, warnings
-from bioai.utils.getTime import getTime
+from bioai.utils import getTime
+from bioai.launcher import runRF, runXGBoost
 
 warnings.filterwarnings('ignore')
 
 
-def rf():
-    print('rf')
-
-
-class GetArgs:
+class Schedule:
     def __init__(self) -> None:
         self.now = getTime()
         info = "BioAI can conveniently build AI models for single-omics or multi-omics data.\n\n" \
@@ -31,23 +28,21 @@ class GetArgs:
                                                     )
         # program params
         group_program = self.parser.add_argument_group("Program paramters")
-        group_program.add_argument("-h", action="help", help="show this help message and exit.")
-        group_program.add_argument("-v", help="show the program version.", metavar='') 
+        group_program.add_argument("-h", "--help", action="help", help="show this help message and exit.")
             
     def register(self):
-        # Random Forest Params
+        # add random forest params
         self.randomForest()
         
-        # XGboost Params
+        # add xgboost params
         self.xgboost()
         
-        
+        # root param parser
         args = self.parser.parse_args()
         
+        # to perform program accordding to sub-parser
         args.func(args)
-        return args
-    
-    
+        
     def randomForest(self):
         example = "bioai-moi RF -i .\example\cnv.csv.gz -g cnv -i .\example\met.csv.gz -g met -o test -l .\example\label.csv"
         description = '-'*30 + f"\n\nBioAI can conveniently build AI models for single-omics or multi-omics data.\n\n{example}\n\n" + '-'*30
@@ -80,8 +75,12 @@ class GetArgs:
         rf_config.add_argument("-t", 
                             required=True,
                             type=str,
-                            choices=['multi_cls', 'binary_cls'],
-                            help="Task", 
+                            choices=['bc', 'mc', 're', 'auto'],
+                            help="The task type of the model, currently supports classification and regression.\n" \
+                                 "bc: to build a binary classification model\n" \
+                                 "mc: to build a multi-classification model\n" \
+                                 "re: to build a regression model\n" \
+                                 "auto: automatically identify through label data.", 
                             metavar='')
         rf_config.add_argument("-o", 
                             default='Result' + self.now,
@@ -133,7 +132,8 @@ class GetArgs:
                             metavar='',
                             help="Random number seed. Default is 42."
                             )
-        rf_parser.set_defaults(func=rf)
+        # set callback function
+        rf_parser.set_defaults(func=runRF)
         
     def xgboost(self):
         example = "bioai-moi xgboost -i .\example\cnv.csv.gz -g cnv -i .\example\met.csv.gz -g met -o test -l .\example\label.csv"
@@ -227,11 +227,11 @@ class GetArgs:
                             metavar='',
                             help="Random number seed. Default is 42."
                             )
+        # set callback function
+        xgboost_parser.set_defaults(func=runXGBoost)
     
-# TODO：不同子命令调用不同模型
 
    
 if __name__ == '__main__':
-    args = GetArgs().register()
-    print(args)
+    args = Schedule().register()
 

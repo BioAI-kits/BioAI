@@ -1,4 +1,5 @@
-from . import algorithms, data, evaluation, launcher, preprocessing, postprocessing, utils, main
+from . import algorithms, data, evaluation, launcher, preprocessing, postprocessing, utils
+from .schedule import Schedule
 
 
 __all__ = [
@@ -9,5 +10,5 @@ __all__ = [
     'preprocessing',
     'postprocessing',
     'utils',
-    'main'
+    'Schedule'
 ]
