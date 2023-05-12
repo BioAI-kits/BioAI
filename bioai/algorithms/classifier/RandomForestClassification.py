@@ -4,6 +4,7 @@ import pandas as pd
 import mlcakes
 from bioai.utils.getTime import getTime
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.model_selection import GridSearchCV
 
 
 class RandomForestClassification:
@@ -18,7 +19,7 @@ class RandomForestClassification:
                  n_estimators=100,
                  max_depth=5,
                  random_state=42,
-                 task='binary_cls',
+                 task='bc',
                  output='Result_RandomForest',  # output directory
                  ):
         """
@@ -45,7 +46,7 @@ class RandomForestClassification:
         self.output = output
         
         # task
-        assert task in ['binary_cls', 'multi_cls'], '[Error]: Task should be binary_cls or multi_cls.'
+        assert task in ['bc', 'mc'], '[Error]: Task should be bc or mc.'
         self.task = task
         
     def buildModel(self):
@@ -54,11 +55,34 @@ class RandomForestClassification:
         """
         info = f"{getTime()} >>> Building model...\n"
         print(info)
-        model = RandomForestClassifier(n_estimators=self.n_estimators, 
-                                       max_depth=self.max_depth, 
+        
+        # Grid Search
+        parameters = {}
+        if self.n_estimators == 'auto':
+            parameters['n_estimators'] = [50, 100, 150, 200]
+        if self.max_depth == 'auto':
+            parameters['max_depth'] = [4, 6, 8, 10]
+        if len(parameters) > 0:
+            gs = GridSearchCV(RandomForestClassifier(random_state=self.random_state), 
+                              parameters, 
+                              refit = False, 
+                              cv = 5, 
+                              verbose = 0, 
+                              n_jobs = -1)
+            gs.fit(self.X_train, self.Y_train)
+            if 'n_estimators' in gs.best_params_:
+                self.n_estimators = gs.best_params_['n_estimators']
+            if 'max_depth' in gs.best_params_:
+                self.max_depth = gs.best_params_['max_depth']
+
+        # Training Model
+        model = RandomForestClassifier(n_estimators=int(self.n_estimators), 
+                                       max_depth=int(self.max_depth), 
                                        random_state=self.random_state,
                                        )
         model.fit(self.X_train, self.Y_train)
+        
+        # Saving Model
         os.makedirs(self.output, exist_ok=True)
         with open(os.path.join(self.output, 'model.pkl'), 'wb') as FO:
             pickle.dump(model, FO)
@@ -70,7 +94,7 @@ class RandomForestClassification:
         """
         info = f"{getTime()} >>> Evaluating model...\n"
         print(info)
-        if self.task == 'multi_cls':
+        if self.task == 'mc':
             from mlcakes.evaluation.multi_class import Metrics
         else:
             from mlcakes.evaluation.binary_class import Metrics
@@ -82,13 +106,22 @@ class RandomForestClassification:
         y_true = self.Y_test
         
         # if binary cls, score represent label1 score.
-        if self.task == 'binary_cls':
+        if self.task == 'bc':
             y_score = y_score[:,1]
             
         Evaluation = Metrics(y_pred=y_pred, y_score=y_score, y_true=y_true, 
                              output=os.path.join(self.output, 'evaluation.json')
                              )
         self.metrics_ = Evaluation.metrics_  
+    
+    def gridSearch(self):
+        # TODO
+        pass 
+    
+    def randomizedSearch(self):
+        # TODO
+        pass 
+    
     
     @staticmethod
     def predict(path, data):
@@ -105,6 +138,7 @@ class RandomForestClassification:
         y_pred = model.predict(data)
         y_score = model.predict_proba(data)
         return y_pred, y_score
+    
     
 
 if __name__ == '__main__':

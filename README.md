@@ -73,7 +73,7 @@ After BioAI is installed, your terminal will contain the following commands:
 
 1. `bioai`: This command is used to build an AI model based on a table, such as transcriptome data or clinical table data.
 2. `bioai-moi`: This command is used to build a multi-omics integrated AI model based on multiple omics data.
-
+3. `bioai-pred`: This command is used to predict based on trained model.
 
 - **Several examples**
 
@@ -98,7 +98,7 @@ BioAI mainly integrates three types of algorithms: data preprocessing, AI algori
 | XGBoost | single/multi omics | classification/regression | ?? |
 | SVM | single/multi omics | classification/regression | ?? |
 | LASSO | single/multi omics | classification/regression | ?? |
-| PathGNN | Transcription | classification | Liang B, Gong H, Lu L, et al. Risk stratification and pathway analysis based on graph neural network and interpretable algorithm[J]. BMC bioinformatics, 2022, 23(1): 394. |
+| PathGNN | Transcription | classification | Risk stratification and pathway analysis based on graph neural network and interpretable algorithm |
 | AttentionMOI | multi omics | classification | ?? |
 
 

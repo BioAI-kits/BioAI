@@ -115,12 +115,12 @@ class Schedule:
         rf_model.add_argument("-n", 
                             default=100,
                             required=False,
-                            type=int,
+                            # type=int,
                             help="The number of trees in the forest. Default is 100.", 
                             metavar='')
         rf_model.add_argument('-d',
                             default=5,
-                            type=int,
+                            # type=int,
                             required=False,
                             metavar='',
                             help="The maximum depth of the tree. Default is 5."
