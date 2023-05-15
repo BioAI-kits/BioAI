@@ -94,12 +94,12 @@ BioAI mainly integrates three types of algorithms: data preprocessing, AI algori
 
 ### Machine/Deep learning algorithms
 
-| Algorithm     | Scope                                             | Task                      |Paper                          | 
-| ---           | ---                                               | ---                       | ---                           | 
-| Random Forest | single omic, multi-omics, general feature matrix  | classification/regression | ??                            |
-| XGBoost       | single omic, multi-omics, general feature matrix  | classification/regression | ??                            |
-| LASSO         | single omic, multi-omics, general feature matrix  | regression                | ??                            |
-| PathGNN       | Transcription                                     | classification            | Risk stratification and pathway analysis based on graph neural network and interpretable algorithm |
+| Algorithm     | Scope                                                     | Task                      |Paper                          | 
+| ---           | ---                                                       | ---                       | ---                           | 
+| Random Forest | single omic, <br>multi-omics, <br>general feature matrix  | classification/regression | ??                            |
+| XGBoost       | single omic, <br>multi-omics, <br>general feature matrix  | classification/regression | ??                            |
+| LASSO         | single omic, <br>multi-omics, <br>general feature matrix  | regression                | ??                            |
+| PathGNN       | Transcription                                             | classification            | Risk stratification and pathway analysis based on graph neural network and interpretable algorithm |
 | AttentionMOI  | multi-omics | classification | ?? |
 
 
