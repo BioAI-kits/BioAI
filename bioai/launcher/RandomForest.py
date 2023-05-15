@@ -3,6 +3,7 @@ def runRF(args):
     from bioai.data import ReadData
     from bioai.preprocessing.dataPreprocessing import CleanPipeline, percent_split
     from bioai.algorithms.classifier import RandomForestClassification
+    from bioai.algorithms.regressor import RandomForestRegression
     from bioai.utils import getTime
     from bioai.utils.check import checkTask
     
@@ -14,6 +15,7 @@ def runRF(args):
     task = args.t
     n_estimators = args.n
     max_depth = args.d
+    seed = args.s
       
     # 2. read data
     datas, label = ReadData(dataFiles=dataFiles,
@@ -39,7 +41,8 @@ def runRF(args):
                                            n_estimators=n_estimators,
                                            max_depth=max_depth,
                                            output=output, 
-                                           task=task
+                                           task=task,
+                                           random_state=seed
                                             )
         model.buildModel()
         # evaluation
@@ -47,8 +50,18 @@ def runRF(args):
         
     ## 5.2 regression model
     elif task == 're':
-        # TODO
-        pass
+        model = RandomForestRegression(X_train=X_train, 
+                                        X_test=X_test,
+                                        Y_train=Y_train,
+                                        Y_test=Y_test,
+                                        n_estimators=n_estimators,
+                                        max_depth=max_depth,
+                                        output=output, 
+                                        task=task,
+                                        random_state=seed
+                                    )
+        model.buildModel()
+        model.evaluation()
      
     else:
         print('[Error] Failed to automatically identify the task type, please set it manually.')

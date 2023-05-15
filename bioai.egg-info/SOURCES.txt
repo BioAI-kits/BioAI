@@ -14,12 +14,16 @@ bioai/algorithms/base.py
 bioai/algorithms/classifier/RandomForestClassification.py
 bioai/algorithms/classifier/XGBoostClassification.py
 bioai/algorithms/classifier/__init__.py
+bioai/algorithms/regressor/RandomForestRegression.py
 bioai/algorithms/regressor/__init__.py
 bioai/algorithms/regressor/lassoRegresion.py
 bioai/data/__init__.py
 bioai/data/download.py
 bioai/data/readData.py
 bioai/evaluation/__init__.py
+bioai/evaluation/binary_class.py
+bioai/evaluation/multi_class.py
+bioai/evaluation/regression.py
 bioai/launcher/RandomForest.py
 bioai/launcher/XGBoost.py
 bioai/launcher/__init__.py
@@ -36,3 +40,4 @@ bioai/utils/getTime.py
 bioai/utils/check/__init__.py
 bioai/utils/check/checkData.py
 bioai/utils/check/checkParamter.py
+bioai/utils/check/checkTask.py

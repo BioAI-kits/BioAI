@@ -1,13 +1,13 @@
 import os, pickle
 import numpy as np
 import pandas as pd 
-from bioai.evaluation import BinaryClassEvaluation, MultiClassEvaluation
+from bioai.evaluation import RegressionEvaluation
 from bioai.utils.getTime import getTime
-from sklearn.ensemble import RandomForestClassifier
+from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import GridSearchCV
 
 
-class RandomForestClassification:
+class RandomForestRegression:
     """
     To build a classification model using RandomForest algorithm.
     """
@@ -19,7 +19,7 @@ class RandomForestClassification:
                  n_estimators=100,
                  max_depth=5,
                  random_state=42,
-                 task='bc',
+                 task='re',
                  output='Result_RandomForest',  # output directory
                  ):
         """
@@ -46,7 +46,7 @@ class RandomForestClassification:
         self.output = output
         
         # task
-        assert task in ['bc', 'mc'], '[Error]: Task should be bc or mc.'
+        assert task == 're', '[Error]: Task should be re.'
         self.task = task
         
     def buildModel(self):
@@ -63,7 +63,7 @@ class RandomForestClassification:
         if self.max_depth == 'auto':
             parameters['max_depth'] = [4, 6, 8, 10]
         if len(parameters) > 0:
-            gs = GridSearchCV(RandomForestClassifier(random_state=self.random_state), 
+            gs = GridSearchCV(RandomForestRegressor(random_state=self.random_state), 
                               parameters, 
                               refit = False, 
                               cv = 5, 
@@ -76,7 +76,7 @@ class RandomForestClassification:
                 self.max_depth = gs.best_params_['max_depth']
 
         # Training Model
-        model = RandomForestClassifier(n_estimators=int(self.n_estimators), 
+        model = RandomForestRegressor(n_estimators=int(self.n_estimators), 
                                        max_depth=int(self.max_depth), 
                                        random_state=self.random_state,
                                        )
@@ -94,32 +94,18 @@ class RandomForestClassification:
         """
         info = f"{getTime()} >>> Evaluating model...\n"
         print(info)
-        
         with open(os.path.join(self.output, 'model.pkl'), 'rb') as FO:
             model = pickle.load(FO)
-        
+        from sklearn import metrics
         y_pred = model.predict(self.X_test)
-        y_score = model.predict_proba(self.X_test)
         y_true = self.Y_test
         
-        if self.task == 'mc':
-            Evaluation = MultiClassEvaluation(y_pred=y_pred, 
-                                              y_score=y_score, 
-                                              y_true=y_true, 
-                                              output=os.path.join(self.output, 'evaluation.json')
-                                             )
-        if self.task == 'bc':
-            y_score = y_score[:,1]
-            Evaluation = BinaryClassEvaluation(y_pred=y_pred, 
-                                               y_score=y_score, 
-                                               y_true=y_true, 
-                                               plot_roc=True,
-                                               roc_fig=os.path.join(self.output, 'roc_curve.svg'),
-                                               output=os.path.join(self.output, 'evaluation.json')
-                                              )
-            
+        Evaluation = RegressionEvaluation(y_pred=y_pred, 
+                                          y_true=y_true,
+                                          output=os.path.join(self.output, 'evaluation.json')
+                                         )
         self.metrics_ = Evaluation.metrics_  
-    
+           
     
     @staticmethod
     def predict(path, data):
@@ -134,35 +120,19 @@ class RandomForestClassification:
         with open(os.path.join(path, 'model.pkl'), 'rb') as FO:
             model = pickle.load(FO)
         y_pred = model.predict(data)
-        y_score = model.predict_proba(data)
-        return y_pred, y_score
+        return y_pred
     
     
 
 if __name__ == '__main__':
     import numpy as np
-    print('正在测试多分类任务: ')
-    # X_train = np.random.rand(64, 16)
-    # Y_train = np.random.choice(3, 64)
-    # X_test = np.random.rand(32, 16)
-    # Y_test = np.random.choice(3, 32)
-    
-    # model = XGBoost(X_train, X_test, Y_train, Y_test, task='multi_cls')
-    # model.buildModel()
-    # model.evaluation()
-    # pred, score = XGBoost.predict('Result_XGBoost', data=X_test)
-    # print(pred, score)
-    
     print('正在测试2分类任务: ')
     X_train = np.random.rand(64, 16)
-    Y_train = np.random.choice(2, 64)
+    Y_train = np.random.rand(64)
     X_test = np.random.rand(32, 16)
-    Y_test = np.random.choice(2, 32)
-    model = RandomForestClassification(X_train, X_test, Y_train, Y_test, task='binary_cls')
+    Y_test = np.random.rand(32)
+    model = RandomForestRegression(X_train, X_test, Y_train, Y_test, task='re', output='Result_RandomForestRE')
     model.buildModel()
     model.evaluation()
-    pred, score = RandomForestClassification.predict('Result_XGBoost', data=X_test)
-    print(pred, score)
-    
-
-
+    pred = RandomForestRegression.predict('Result_RandomForestRE', data=X_test)
+    # print(pred)

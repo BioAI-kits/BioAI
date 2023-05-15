@@ -13,7 +13,7 @@
 
 ## What can BioAI do for you ?
 
-If you are a domain scientist (biologist, medical researcher, ...) looking to analyze your own omics or scale data, BioAI provides an out-of-the-box solution that is all but guaranteed to provide excellent results on your individual dataset. Simply convert your dataset into the BioAI format and enjoy the power of AI - no expertise required!
+If you are a domain scientist (biologist, medical researcher, ...) looking to analyze your own omics or clinical matrix data, BioAI provides an out-of-the-box solution that is all but guaranteed to provide excellent results on your individual dataset. Simply convert your dataset into the BioAI format and enjoy the power of AI - no expertise required!
 
 If you are an AI or bioinformatics researcher developing AI algorithms suitable for bioinformatics or clinical practice, BioAI offers the fantastic out-of-the-box applicable baseline algorithms to compete against
 
@@ -23,11 +23,11 @@ Model interpretability is a great concern in the biomedical field, so we have al
 
 ## What is the scope of BioAI ?
 
-**BioAI** is designed for fast and easy building of machine/deep learning models for bioinformatics. It can handle arbitrarily formatted omics datasets. 
+**BioAI** is designed for fast and easy building of machine/deep learning models for bioinformatics.
 
 The methods currently integrated by BioAI are all supervised learning, which means that you need to provide training examples for your application. These methods are all derived from published articles. Collectively, these methods enable **classification** and **regression** tasks such as predicting disease subtypes (classification), predicting generation time (regression).
 
-In terms of data, it supports single-omics and multi-omics integration. Off note, the omics data needs to meet the following structure, that is, each row represents a sample, and each column represents an omics feature, such as a gene or a mutation. An example is as follows:
+In terms of data, BioAI is able to handle feature matrix type data, that is, each row represents a sample, and each column represents an omics feature, such as a gene or a mutation. An example is as follows:
 
 |            | Gene-A | Gene-B | Gene-C | Gene-D | Gene-E | Gene-F | Gene-G | Gene-H |
 | ---        | ---    | ---    | ---    | ---    | ---    | ---    | ---    | ---    |
@@ -40,6 +40,9 @@ In terms of data, it supports single-omics and multi-omics integration. Off note
 
 All data should be saved in `.csv` format, of course you can use `gz` for compression. You can also refer to the [example data](https://github.com/BioAI-kits/BioAI/tree/master/example) we provide for a more intuitive understanding.
 
+From the perspective of biological practice, we support `single-omics modeling` and `multi-omics integrated data modeling`.
+
+( PS: In theory, as long as the data structure is consistent, most of the algorithms in our framework can also be applied to other scenarios, such as climate prediction based on structured features. )
 
 ---
 
@@ -72,8 +75,7 @@ pip install bioai
 After BioAI is installed, your terminal will contain the following commands:
 
 1. `bioai`: This command is used to build an AI model based on a table, such as transcriptome data or clinical table data.
-2. `bioai-moi`: This command is used to build a multi-omics integrated AI model based on multiple omics data.
-3. `bioai-pred`: This command is used to predict based on trained model.
+2. `bioai-pred`: This command is used to predict based on trained model.
 
 - **Several examples**
 
@@ -92,14 +94,13 @@ BioAI mainly integrates three types of algorithms: data preprocessing, AI algori
 
 ### Machine/Deep learning algorithms
 
-| Algorithm | Scope | Task |Paper | 
-| --- | --- | -- | --- | 
-| Random Forest | single/multi omics | classification/regression | ?? |
-| XGBoost | single/multi omics | classification/regression | ?? |
-| SVM | single/multi omics | classification/regression | ?? |
-| LASSO | single/multi omics | classification/regression | ?? |
-| PathGNN | Transcription | classification | Risk stratification and pathway analysis based on graph neural network and interpretable algorithm |
-| AttentionMOI | multi omics | classification | ?? |
+| Algorithm     | Scope                                             | Task                      |Paper                          | 
+| ---           | ---                                               | ---                       | ---                           | 
+| Random Forest | single omic, multi-omics, general feature matrix  | classification/regression | ??                            |
+| XGBoost       | single omic, multi-omics, general feature matrix  | classification/regression | ??                            |
+| LASSO         | single omic, multi-omics, general feature matrix  | regression                | ??                            |
+| PathGNN       | Transcription                                     | classification            | Risk stratification and pathway analysis based on graph neural network and interpretable algorithm |
+| AttentionMOI  | multi-omics | classification | ?? |
 
 
 ### Interpretability algorithm

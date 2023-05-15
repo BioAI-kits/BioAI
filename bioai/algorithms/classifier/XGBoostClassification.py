@@ -16,7 +16,7 @@ class XGBoostClassification:
                  max_depth=5,
                  random_state=42,
                  learning_rate=0.0001,
-                 task='binary_cls',
+                 task='bc',
                  output='Result_XGBoost',  # output directory
                  ):
         """
