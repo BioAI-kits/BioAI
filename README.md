@@ -98,7 +98,7 @@ BioAI mainly integrates three types of algorithms: data preprocessing, AI algori
 | ---           | ---                                                       | ---                       | ---                           | 
 | Random Forest | single omic, <br>multi-omics, <br>general feature matrix  | classification/regression | [Related documents of sklearn](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.RandomForestClassifier.html)  |
 | XGBoost       | single omic, <br>multi-omics, <br>general feature matrix  | classification/regression | [Related documents of xgboost](https://xgboost.readthedocs.io/en/stable/)                            |
-| PathGNN       | Transcription                                             | classification            | [Risk stratification and pathway analysis based on graph neural network and interpretable algorithm](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-022-04950-1) |
+| PathGNN       | single omic (Transcription)                               | classification            | [Risk stratification and pathway analysis based on graph neural network and interpretable algorithm](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/s12859-022-04950-1) |
 | AttentionMOI  | multi-omics integration                                   | classification            | [Related documents](https://github.com/BioAI-kits/AttentionMOI)   |
 
 
