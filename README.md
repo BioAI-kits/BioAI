@@ -104,4 +104,4 @@ BioAI mainly integrates three types of algorithms: data preprocessing, AI algori
 
 ### Interpretability algorithm
 
-
+In general, BioAI performs explanatory calculations on machine learning models through [Shapely](https://shap.readthedocs.io/en/latest/index.html), and interpretable calculations on deep learning models through [captum](https://captum.ai/).
